@@ -19,7 +19,9 @@ fn main() {
                         break;
                     }
                     2.. => {
-                        println!("Not implemented yet");
+                        print!("\x1B[2J\x1B[1;1H");
+                        git_commands::clone();
+                        break;
                     }
                     _ => {
                         println!("Invalid option");

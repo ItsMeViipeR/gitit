@@ -90,3 +90,22 @@ pub fn commit_and_push() {
 
     push(&branch);
 }
+
+pub fn clone() {
+    let mut repo: String = String::new();
+
+    print!("Enter repo: ");
+    std::io::stdout().flush().unwrap();
+    std::io::stdin().read_line(&mut repo).unwrap();
+
+    if !repo.contains(".git") {
+        repo = format!("{}.git", repo.trim());
+    }
+
+    let output = std::process::Command::new("git")
+        .args(&["clone", repo.as_str()])
+        .output()
+        .expect("Failed to clone");
+
+    println!("{}", String::from_utf8_lossy(&output.stdout));
+}
